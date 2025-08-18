@@ -1,13 +1,35 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
+import axios from "axios";
 
 function Signup() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    
-    
+    const [message, setMessage] = useState("");
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        try {
+            const url = "http://localhost:5000/api/signup";
+            const payload = { name, email, password };
+
+            const response = await axios.post(url, payload);
+            
+            console.log(response.data);
+        } catch (error) {
+            
+        }
+        
+        
+    }
+
+
+
+
     const navigate = useNavigate()
 
     return (
@@ -36,7 +58,7 @@ function Signup() {
             </header>
             <div className='bg-zinc-100 flex flex-col w-full min-h-screen items-center p-8'>
                 <h2 className='text-3xl mb-6'>Sign Up</h2>
-                <form action=""
+                <form onSubmit={handleSubmit}
                     className='flex flex-wrap gap-2 bg-zinc-600 rounded-lg p-8'
                 >
                     <input
@@ -60,11 +82,12 @@ function Signup() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <button 
+                    <button
                         type="submit"
                         className='bg-green-500 text-sm border-3 border-white text-white px-3 py-1 rounded-lg cursor-pointer'
                     >Sign Up</button>
                 </form>
+                {message}
             </div>
         </div>
     )
