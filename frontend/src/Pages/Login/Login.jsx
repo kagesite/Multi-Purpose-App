@@ -2,16 +2,40 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router'
 import HeaderNav from '../../Components/HeaderNav';
+import axios from 'axios';
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
 
+    const [loginSuccessful, setLoginSuccessful] = useState(null);
+    const [noAccountError, setNoAccountError] = useState(false);
+
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        try {
+            const url = "http://localhost:5000/api/login";
+            const payload = { email, password };
+
+            const response = await axios.post(url, payload);
+
+            console.log(response.data);
+
+            setLoginSuccessful(true);
+            setMessage("Login Successful!");
+
+            setEmail("");
+            setPassword("");
+        } catch (error) {
+            setLoginSuccessful(false);
+            console.log(error.response.data.error);
+            setMessage(error.response.data.error);
+        }
+
     }
 
 
@@ -30,17 +54,17 @@ function Login() {
                                 type="email"
                                 className='border-2 rounded-md px-2 py-1 border-zinc-9 bg-white'
                                 placeholder='Enter email'
-                                value={name}
+                                value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                         <div className='flex flex-col'>
-                            <label htmlFor="name" className='mb-1'>Password:</label>
+                            <label htmlFor="password" className='mb-1'>Password:</label>
                             <input
                                 type="password"
                                 className='border-2 rounded-md px-2 py-1 border-zinc-9 bg-white'
                                 placeholder='Enter password'
-                                value={name}
+                                value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
@@ -52,6 +76,16 @@ function Login() {
                         </div>
                     </div>
                 </form>
+                {loginSuccessful && (
+                    <div>
+                        {message}
+                    </div>
+                )}
+                {!loginSuccessful && (
+                    <div>
+                        {message}
+                    </div>
+                )}
             </div>
         </div>
     )
