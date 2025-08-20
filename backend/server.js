@@ -72,9 +72,27 @@ app.post("/api/login", async (req, res) => {
             return res.status(500).json({ error: "Invalid password." });
         }
 
+        const payload = {
+            user: {
+                id: loginUser.id,
+                name: loginUser.name,
+                email: loginUser.email
+            }
+        }
+        
+        const token = jwt.sign(
+            payload,
+            JWT_SECRET,
+            { expiresIn: "1h"}
+        );
+        
+        
+        
+
         return res.status(200).json({
             message: "Login successful!",
-            loginUser
+            loginUser,
+            token
         })
     } catch (error) {
         console.log(`Login Error: ${error}`);
