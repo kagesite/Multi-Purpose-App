@@ -14,6 +14,30 @@ const users = []
 
 const JWT_SECRET = "this_is_my_jwt_secret"
 
+
+const authMiddleware = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+        return res.status(401).json({ error: "No authorizatoin header provided" });
+    }
+
+    const token = authHeader.split(" ")[1];
+    if (!token) {
+        return res.status(400).json({ error: "Missing Token!" });
+    }
+
+    try {
+        const decoded = jwt.verify(token, JWT_SECRET);
+        req.user = decoded;
+        next()
+    } catch (error) {
+        return res.status(401).json({ error: "Invalid or expired token!" })
+    }
+}
+
+
+
+
 // SIGNUP API
 app.post("/api/signup", async (req, res) => {
     const { name, email, password } = req.body;
@@ -72,22 +96,17 @@ app.post("/api/login", async (req, res) => {
             return res.status(500).json({ error: "Invalid password." });
         }
 
-        const payload = {
-            user: {
-                id: loginUser.id,
-                name: loginUser.name,
-                email: loginUser.email
-            }
+        const userInfo = {
+            id: loginUser.id,
+            name: loginUser.name,
+            email: loginUser.email
         }
-        
+
         const token = jwt.sign(
-            payload,
+            userInfo,
             JWT_SECRET,
-            { expiresIn: "1h"}
+            { expiresIn: "1h" }
         );
-        
-        
-        
 
         return res.status(200).json({
             message: "Login successful!",
@@ -102,6 +121,10 @@ app.post("/api/login", async (req, res) => {
 
 })
 
+
+app.get('/api/auth/users', authMiddleware, (req, res) => {
+    return res.json({ users })
+})
 
 
 
