@@ -9,34 +9,38 @@ function Signup() {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const [signupSuccessful, setSignupSuccessful] = useState(false);
+    const [signupFailed, setSignupFailed] = useState(false);
 
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         try {
             const url = "http://localhost:5000/api/signup";
             const payload = { name, email, password };
 
             const response = await axios.post(url, payload);
-            
+
             console.log(response.data);
 
             setSignupSuccessful(true);
-            setMessage(response.data.message)
-            
+            setSignupFailed(false);
+            setMessage(response.data.message);
+
+            setName("");
+            setEmail("");
+            setPassword("");
         } catch (error) {
+            setSignupSuccessful(false);
+            setSignupFailed(true)
             console.log(error.response.data.error);
             setMessage(error.response.data.error);
         }
-        
-        
+
+
     }
 
-
-
-
-    const navigate = useNavigate()
 
     return (
         <div>
@@ -65,7 +69,7 @@ function Signup() {
             <div className='bg-zinc-100 flex flex-col w-full min-h-screen items-center p-8'>
                 <h2 className='text-3xl mb-6'>Sign Up</h2>
                 <form onSubmit={handleSubmit}
-                    className='flex flex-wrap gap-2 bg-zinc-600 rounded-lg p-8'
+                    className='flex flex-wrap gap-2 bg-zinc-600 rounded-lg p-8 mb-4'
                 >
                     <input
                         type="text"
@@ -95,7 +99,12 @@ function Signup() {
                 </form>
                 {signupSuccessful && (
                     <div>
-                        <p>{message} Please login <button className='text-blue-500 font-bold'>here</button></p>
+                        <p className='text'>{message} Please login <button onClick={() => navigate('/login')} className='text-blue-500 font-bold cursor-pointer'>here</button></p>
+                    </div>
+                )}
+                {signupFailed && (
+                    <div>
+                        <p className='text'>{message} Try again.</p>
                     </div>
                 )}
                 {/* {message} */}
