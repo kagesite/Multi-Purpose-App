@@ -47,16 +47,16 @@ function Signup() {
         <div>
             <HeaderNav />
             <div className='bg-zinc-100 flex flex-col w-full min-h-screen items-center p-8'>
-                <h2 className='text-3xl mb-6'>Sign Up</h2>
+                <h2 className='text-3xl font-semibold'>Create an account</h2>
                 <form onSubmit={handleSubmit}
-                    className='bg-zinc-200 p-8 w-lg rounded-lg border-2 mt-8'
+                    className='bg-zinc-200 p-8 w-lg rounded-lg border-3 border-green-900 my-8'
                 >
                     <div className='flex flex-col gap-8 '>
                         <div className='flex flex-col'>
                             <label htmlFor="name" className='mb-1'>Name:</label>
                             <input
                                 type="text"
-                                className='border-2 rounded-md px-3 py-1 border-zinc-9 bg-white'
+                                className='border-2 rounded-md px-2 py-1 border-zinc-9 bg-white'
                                 placeholder='Name'
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
@@ -66,9 +66,9 @@ function Signup() {
                             <label htmlFor="email" className='mb-1'>Email:</label>
                             <input
                                 type="email"
-                                className='border-2 rounded-md px-3 py-1 border-zinc-9 bg-white'
+                                className='border-2 rounded-md px-2 py-1 border-zinc-9 bg-white'
                                 placeholder='Email'
-                                value={name}
+                                value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
@@ -76,39 +76,23 @@ function Signup() {
                             <label htmlFor="name" className='mb-1'>Password:</label>
                             <input
                                 type="password"
-                                className='border-2 rounded-md px-3 py-1 border-zinc-9 bg-white'
+                                className='border-2 rounded-md px-2 py-1 border-zinc-9 bg-white'
                                 placeholder='Password'
-                                value={name}
+                                value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
                         <div className='flex items-center w-full'>
                             <button
                                 type="submit"
-                                className='bg-blue-500 text-sm border-3 border-blue-900 text-white px-4 py-2 rounded-lg font-semibold cursor-pointer w-fit'
+                                className='bg-green-600 text-sm border-3 border-green-900 text-white px-4 py-2 rounded-lg font-semibold cursor-pointer w-fit'
                             >Sign Up</button>
                         </div>
                     </div>
-                    {/* 
-                    <input
-                        type="email"
-                        className='border-2 rounded-md px-3 py-1 border-zinc-9 bg-white'
-                        placeholder='Email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <input
-                        type="password"
-                        className='border-2 rounded-md px-3 py-1 border-zinc-900 bg-white'
-                        placeholder='Password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    /> */}
-
                 </form>
                 {signupSuccessful && (
                     <div>
-                        <p className='text'>{message} Please login <button onClick={() => navigate('/login')} className='text-blue-500 font-bold cursor-pointer'>here</button></p>
+                        <p className='text'>{message} Please login <button onClick={() => navigate('/login')} className='text-green-600 font-bold cursor-pointer'>here</button></p>
                     </div>
                 )}
                 {signupFailed && (

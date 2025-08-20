@@ -12,7 +12,7 @@ function HeaderNav() {
             <nav className=''>
                 <ul className='flex gap-6'>
                     <li
-                        className='bg-green-500 text-sm border-3 border-white text-white px-3 py-1 rounded-lg cursor-pointer'
+                        className='bg-green-600 text-sm border-3 border-white text-white px-3 py-1 rounded-lg cursor-pointer'
                         onClick={() => navigate("/signup")}
                     >
                         Create Account
