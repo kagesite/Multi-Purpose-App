@@ -8,6 +8,7 @@ function Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
+    const [signupSuccessful, setSignupSuccessful] = useState(false);
 
 
     const handleSubmit = async (e) => {
@@ -20,8 +21,13 @@ function Signup() {
             const response = await axios.post(url, payload);
             
             console.log(response.data);
-        } catch (error) {
+
+            setSignupSuccessful(true);
+            setMessage(response.data.message)
             
+        } catch (error) {
+            console.log(error.response.data.error);
+            setMessage(error.response.data.error);
         }
         
         
@@ -87,7 +93,12 @@ function Signup() {
                         className='bg-green-500 text-sm border-3 border-white text-white px-3 py-1 rounded-lg cursor-pointer'
                     >Sign Up</button>
                 </form>
-                {message}
+                {signupSuccessful && (
+                    <div>
+                        <p>{message} Please login <button className='text-blue-500 font-bold'>here</button></p>
+                    </div>
+                )}
+                {/* {message} */}
             </div>
         </div>
     )
