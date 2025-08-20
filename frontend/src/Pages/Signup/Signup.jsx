@@ -69,15 +69,47 @@ function Signup() {
             <div className='bg-zinc-100 flex flex-col w-full min-h-screen items-center p-8'>
                 <h2 className='text-3xl mb-6'>Sign Up</h2>
                 <form onSubmit={handleSubmit}
-                    className='flex flex-wrap gap-2 bg-zinc-600 rounded-lg p-8 mb-4'
+                    className='bg-zinc-200 p-8 w-lg rounded-lg border-2 mt-8'
                 >
-                    <input
-                        type="text"
-                        className='border-2 rounded-md px-3 py-1 border-zinc-9 bg-white'
-                        placeholder='Name'
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
+                    <div className='flex flex-col gap-8 '>
+                        <div className='flex flex-col'>
+                            <label htmlFor="name" className='mb-1'>Name:</label>
+                            <input
+                                type="text"
+                                className='border-2 rounded-md px-3 py-1 border-zinc-9 bg-white'
+                                placeholder='Name'
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </div>
+                        <div className='flex flex-col'>
+                            <label htmlFor="email" className='mb-1'>Email:</label>
+                            <input
+                                type="email"
+                                className='border-2 rounded-md px-3 py-1 border-zinc-9 bg-white'
+                                placeholder='Email'
+                                value={name}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div className='flex flex-col'>
+                            <label htmlFor="name" className='mb-1'>Password:</label>
+                            <input
+                                type="password"
+                                className='border-2 rounded-md px-3 py-1 border-zinc-9 bg-white'
+                                placeholder='Password'
+                                value={name}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+                        <div className='flex items-center w-full'>
+                            <button
+                                type="submit"
+                                className='bg-blue-500 text-sm border-3 border-blue-900 text-white px-4 py-2 rounded-lg font-semibold cursor-pointer w-fit'
+                            >Sign Up</button>
+                        </div>
+                    </div>
+                    {/* 
                     <input
                         type="email"
                         className='border-2 rounded-md px-3 py-1 border-zinc-9 bg-white'
@@ -91,11 +123,8 @@ function Signup() {
                         placeholder='Password'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <button
-                        type="submit"
-                        className='bg-green-500 text-sm border-3 border-white text-white px-3 py-1 rounded-lg cursor-pointer'
-                    >Sign Up</button>
+                    /> */}
+
                 </form>
                 {signupSuccessful && (
                     <div>
