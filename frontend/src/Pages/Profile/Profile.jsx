@@ -1,10 +1,12 @@
 import React from 'react'
 import HeaderNav from '../../Components/HeaderNav'
 
-function Profile() {
+function Profile({ setIsLoggedIn }) {
+
+    
     return (
         <div>
-            <HeaderNav />
+            <HeaderNav setIsLoggedIn={setIsLoggedIn}/>
         </div>
     )
 }
