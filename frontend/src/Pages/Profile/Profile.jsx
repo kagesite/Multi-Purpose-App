@@ -48,9 +48,10 @@ function Profile({ setIsLoggedIn }) {
             <HeaderNav setIsLoggedIn={setIsLoggedIn} />
             {loading ? <p>Loading...</p> : (
                 <div className='bg-zinc-100 flex flex-col w-full min-h-screen items-center p-8'>
-                    <div className='bg-zinc-200 w-lg p-8 rounded-lg'>
-                        <h2 className='font-semibold text-4xl'>Welcome back {user.name}!</h2>
-                        <hr className='my-4'/>
+                    <h1 className='font-semibold text-4xl'>Account Profile</h1>
+                    <div className='bg-zinc-200 w-lg p-8 rounded-lg my-8 border-3 border-zinc-900'>
+                        <h2 className='font-semibold text-4xl'>Welcome back <span className='text-blue-500'>{user.name}!</span></h2>
+                        <hr className='my-4' />
                         <h2 className='font-semibold text-2xl mb-4'>Account Info:</h2>
                         <p className='mb-2'><span className='font-semibold'>Email: </span>{user.email}</p>
                         <p className='mb-2'><span className='font-semibold'>Account ID: </span>{user.id}</p>

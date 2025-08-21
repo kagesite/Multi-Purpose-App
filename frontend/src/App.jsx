@@ -40,7 +40,7 @@ function App() {
                 />
                 <Route
                     path='/dashboard'
-                    element={isLoggedIn ? <Dashboard setIsLoggedIn={setIsLoggedIn} /> : <Navigate to={"/login"} />}
+                    element={<Dashboard setIsLoggedIn={setIsLoggedIn} />}
                 />
 
             </Routes>

@@ -1,8 +1,18 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import HeaderNav from '../../Components/HeaderNav';
+import { useEffect } from 'react';
 
 function Home({ setIsLoggedIn }) {
+    
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            setIsLoggedIn(false);
+
+        }
+    }, [])
+    
     const navigate = useNavigate();
 
     return (
