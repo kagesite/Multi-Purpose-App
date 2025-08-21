@@ -19,7 +19,12 @@ function HeaderNav({ setIsLoggedIn }) {
             >KageApp</h1>
             <nav className=''>
                 {setIsLoggedIn ? (
-                    <ul className='flex gap-6'>
+                    <ul className='flex gap-6 flex items-center'>
+                        <li className='text-white'
+                            onClick={() => navigate("/dashboard")}
+                        >
+                            Dashboard
+                        </li>
                         <li
                             className='bg-green-600 text-sm border-3 border-white text-white px-3 py-1 rounded-lg cursor-pointer'
                             onClick={() => navigate("/signup")}

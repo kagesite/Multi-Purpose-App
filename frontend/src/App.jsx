@@ -7,6 +7,7 @@ import Login from './Pages/Login/Login'
 import Profile from './Pages/Profile/Profile'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import Dashboard from './Pages/Dashboard/Dashboard'
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,6 +38,11 @@ function App() {
                     path='/profile'
                     element={isLoggedIn ? <Profile setIsLoggedIn={setIsLoggedIn} /> : <Navigate to={"/login"} />}
                 />
+                <Route
+                    path='/dashboard'
+                    element={isLoggedIn ? <Dashboard setIsLoggedIn={setIsLoggedIn} /> : <Navigate to={"/login"} />}
+                />
+
             </Routes>
         </Router>
     )
