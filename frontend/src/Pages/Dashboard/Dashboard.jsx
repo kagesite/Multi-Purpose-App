@@ -2,7 +2,7 @@ import React from 'react'
 import HeaderNav from '../../Components/HeaderNav'
 import { useState } from 'react'
 
-function Dashboard({ setIsLoggedIn }) {
+function Dashboard({ setIsLoggedIn, isLoggedIn }) {
     const [projects, setProjects] = useState([
         {
             id: 1,
@@ -21,7 +21,7 @@ function Dashboard({ setIsLoggedIn }) {
 
     return (
         <div>
-            <HeaderNav setIsLoggedIn={setIsLoggedIn} />
+            <HeaderNav setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>
             <div className='bg-zinc-100 flex flex-col w-full min-h-screen items-center p-8'>
                 <h1 className='font-semibold text-4xl'>Dashboard</h1>
                 <div className='my-8'>

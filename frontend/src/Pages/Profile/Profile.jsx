@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useEffect } from 'react';
 import axios from 'axios';
 
-function Profile({ setIsLoggedIn }) {
+function Profile({ setIsLoggedIn, isLoggedIn }) {
     const [user, setUser] = useState({});
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(true);
@@ -45,7 +45,7 @@ function Profile({ setIsLoggedIn }) {
 
     return (
         <div>
-            <HeaderNav setIsLoggedIn={setIsLoggedIn} />
+            <HeaderNav setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
             {loading ? <p>Loading...</p> : (
                 <div className='bg-zinc-100 flex flex-col w-full min-h-screen items-center p-8'>
                     <h1 className='font-semibold text-4xl'>Account Profile</h1>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router'
 
-function HeaderNav({ setIsLoggedIn }) {
+function HeaderNav({ setIsLoggedIn, isLoggedIn }) {
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -19,7 +19,7 @@ function HeaderNav({ setIsLoggedIn }) {
                 onClick={() => navigate("/")}
             >KageApp</h1>
             <nav className=''>
-                {setIsLoggedIn ? (
+                {isLoggedIn ? (
                     <ul className='flex gap-6 flex items-center'>
                         <li className='bg-blue-600 text-sm border-3 border-white text-white px-3 py-1 rounded-lg cursor-pointer'
                             onClick={() => navigate("/dashboard")}

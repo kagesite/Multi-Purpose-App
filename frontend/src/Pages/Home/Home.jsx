@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import HeaderNav from '../../Components/HeaderNav';
 import { useEffect } from 'react';
 
-function Home({ setIsLoggedIn }) {
-    
+function Home({ setIsLoggedIn, isLoggedIn }) {
+
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (!token) {
@@ -12,12 +12,12 @@ function Home({ setIsLoggedIn }) {
 
         }
     }, [])
-    
+
     const navigate = useNavigate();
 
     return (
         <div className='h-full'>
-            <HeaderNav setIsLoggedIn={setIsLoggedIn} />
+            <HeaderNav setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
             <div className='bg-zinc-100 flex flex-col w-full min-h-screen items-center p-8'>
                 <h2 className='text-3xl font-semibold'>Welcome Home!</h2>
                 <div className='bg-zinc-200 p-8 w-lg rounded-lg border-2 mt-8'>
