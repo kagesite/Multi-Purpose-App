@@ -18,12 +18,12 @@ const JWT_SECRET = "this_is_my_jwt_secret"
 const authMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
-        return res.status(401).json({ error: "No authorizatoin header provided" });
+        return res.status(401).json({ error: "No authorization header provided" });
     }
 
     const token = authHeader.split(" ")[1];
     if (!token) {
-        return res.status(400).json({ error: "Missing Token!" });
+        return res.status(401).json({ error: "Missing Token!" });
     }
 
     try {
