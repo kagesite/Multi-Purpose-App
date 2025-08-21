@@ -5,30 +5,41 @@ import Home from './Pages/Home/Home'
 import Signup from './Pages/Signup/Signup'
 import Login from './Pages/Login/Login'
 import Profile from './Pages/Profile/Profile'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
 function App() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            setIsLoggedIn(true);
+        }
+    }, []);
+
     return (
         <Router>
             <Routes>
-                <Route 
+                <Route
                     path='/'
                     element={<Home />}
                 />
-                <Route 
+                <Route
                     path='/signup'
-                    element={<Signup />}
+                    element={isLoggedIn ? <Navigate to={"/profile"} /> : <Signup setIsLoggedIn={setIsLoggedIn} />}
                 />
-                <Route 
+                <Route
                     path='/login'
-                    element={<Login />}
+                    element={isLoggedIn ? <Navigate to={"/profile"} /> : <Login setIsLoggedIn={setIsLoggedIn} />}
                 />
-                <Route 
-                    path='/profie'
-                    element={<Profile />}
+                <Route
+                    path='/profile'
+                    element={isLoggedIn ? <Profile setIsLoggedIn={setIsLoggedIn} /> : <Navigate to={"/login"} />}
                 />
             </Routes>
         </Router>
-  )
+    )
 }
 
 export default App

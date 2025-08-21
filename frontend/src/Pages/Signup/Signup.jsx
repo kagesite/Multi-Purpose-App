@@ -27,7 +27,6 @@ function Signup() {
 
             setSignupSuccessful(true);
             setSignupFailed(false);
-            setMessage(response.data.message);
 
             setName("");
             setEmail("");

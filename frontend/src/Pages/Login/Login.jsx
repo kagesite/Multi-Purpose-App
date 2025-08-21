@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 import HeaderNav from '../../Components/HeaderNav';
 import axios from 'axios';
 
-function Login() {
+function Login({ setIsLoggedIn }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
@@ -28,8 +28,11 @@ function Login() {
             const token = response.data.token;
 
             localStorage.setItem("token", token);
+            setIsLoggedIn(true);
             setLoginSuccessful(true);
-            setMessage("Login Successful!");
+
+            navigate('/profile');
+            
 
             setEmail("");
             setPassword("");
@@ -79,11 +82,11 @@ function Login() {
                         </div>
                     </div>
                 </form>
-                {loginSuccessful && (
+                {/* {loginSuccessful && (
                     <div>
                         {message}
                     </div>
-                )}
+                )} */}
                 {!loginSuccessful && (
                     <div>
                         {message}
