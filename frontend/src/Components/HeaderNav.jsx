@@ -7,9 +7,12 @@ function HeaderNav({ setIsLoggedIn }) {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
-        setIsLoggedIn(false);
-        navigate('/login');
+        const confirmLogout = window.confirm("Do you wish to logout?");
+        if (confirmLogout) {
+            localStorage.removeItem("token");
+            setIsLoggedIn(false);
+            navigate("/login")
+        }
     }
 
     return (
@@ -20,19 +23,19 @@ function HeaderNav({ setIsLoggedIn }) {
             <nav className=''>
                 {setIsLoggedIn ? (
                     <ul className='flex gap-6 flex items-center'>
-                        <li className='text-white'
+                        <li className='bg-blue-600 text-sm border-3 border-white text-white px-3 py-1 rounded-lg cursor-pointer'
                             onClick={() => navigate("/dashboard")}
                         >
                             Dashboard
                         </li>
                         <li
-                            className='bg-green-600 text-sm border-3 border-white text-white px-3 py-1 rounded-lg cursor-pointer'
+                            className='bg-violet-600 text-sm border-3 border-white text-white px-3 py-1 rounded-lg cursor-pointer'
                             onClick={() => navigate("/signup")}
                         >
                             Profile
                         </li>
                         <li
-                            className='bg-amber-500 text-sm border-3 border-white text-white px-3 py-1 rounded-lg cursor-pointer'
+                            className='bg-red-500 text-sm border-3 border-white text-white px-3 py-1 rounded-lg cursor-pointer'
                             onClick={handleLogout}
                         >
                             Logout
