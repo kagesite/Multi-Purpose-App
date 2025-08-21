@@ -2,12 +2,12 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import HeaderNav from '../../Components/HeaderNav';
 
-function Home() {
+function Home({ setIsLoggedIn }) {
     const navigate = useNavigate();
 
     return (
         <div className='h-full'>
-            <HeaderNav />
+            <HeaderNav setIsLoggedIn={setIsLoggedIn} />
             <div className='bg-zinc-100 flex flex-col w-full min-h-screen items-center p-8'>
                 <h2 className='text-3xl font-semibold'>Welcome Home!</h2>
                 <div className='bg-zinc-200 p-8 w-lg rounded-lg border-2 mt-8'>

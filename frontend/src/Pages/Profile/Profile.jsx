@@ -46,17 +46,17 @@ function Profile({ setIsLoggedIn }) {
     return (
         <div>
             <HeaderNav setIsLoggedIn={setIsLoggedIn} />
-            <div>
-                {loading && <p>Loading...</p>}
-                {message && <p>{message}</p>}
-                {user && (
-                    <div>
-                        <h2>Welcome, {user.name}</h2>
-                        <p>Email: {user.email}</p>
-                        <p>ID: {user.id}</p>
+            {loading ? <p>Loading...</p> : (
+                <div className='bg-zinc-100 flex flex-col w-full min-h-screen items-center p-8'>
+                    <div className='bg-zinc-200 w-lg p-8 rounded-lg'>
+                        <h2 className='font-semibold text-4xl'>Welcome back {user.name}!</h2>
+                        <hr className='my-4'/>
+                        <h2 className='font-semibold text-2xl mb-4'>Account Info:</h2>
+                        <p className='mb-2'><span className='font-semibold'>Email: </span>{user.email}</p>
+                        <p className='mb-2'><span className='font-semibold'>Account ID: </span>{user.id}</p>
                     </div>
-                )}
-            </div>
+                </div>
+            )}
         </div>
     )
 }

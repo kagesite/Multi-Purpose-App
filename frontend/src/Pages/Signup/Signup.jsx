@@ -37,8 +37,6 @@ function Signup() {
             console.log(error.response.data.error);
             setMessage(error.response.data.error);
         }
-
-
     }
 
 
