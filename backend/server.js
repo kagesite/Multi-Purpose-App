@@ -117,13 +117,11 @@ app.post("/api/login", async (req, res) => {
         console.log(`Login Error: ${error}`);
         return res.status(400).json({ error: `Login Error: ${error}` })
     }
-
-
 })
 
 
-app.get('/api/auth/users', authMiddleware, (req, res) => {
-    return res.json({ users })
+app.get('/api/auth/userInfo', authMiddleware, (req, res) => {
+    return res.json({ userInfo: req.user })
 })
 
 
