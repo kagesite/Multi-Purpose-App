@@ -24,7 +24,7 @@ function App() {
             <Routes>
                 <Route
                     path='/'
-                    element={<Home setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>}
+                    element={<Home setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />}
                 />
                 <Route
                     path='/signup'
@@ -40,7 +40,11 @@ function App() {
                 />
                 <Route
                     path='/dashboard'
-                    element={<Dashboard setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>}
+                    element={isLoggedIn ? <Dashboard setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} /> : <Navigate to={"/login"} />}
+                />
+                <Route
+                    path='/*'
+                    element={isLoggedIn ? <Navigate to={"/profile"} /> : <Navigate to={"/"} />}
                 />
 
             </Routes>
